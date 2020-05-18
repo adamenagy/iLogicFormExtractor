@@ -74,13 +74,6 @@ namespace iLogicFormExtractorPlugin
             return jsonRoot.ToString();
         }
 
-        /// <summary>
-        /// Get groups and parameters.
-        /// </summary>
-        /// <remarks>
-        /// This overwrites the <see cref="groups"/> and <see cref="groupsDictionary"/> class fields.
-        /// </remarks>
-        /// <returns>The total count of parameters on the form.</returns>
         private JObject GetGroupsAndParameters(string formName)
         {
             FormSpecification formSpec = storage.LoadFormSpecification(formName);
@@ -88,10 +81,6 @@ namespace iLogicFormExtractorPlugin
             return GetGroupItems(formSpec, null);
         }
 
-        /// <summary>
-        /// Get a list of all the groups that directly contain parameters.
-        /// If there is a tree structure, this will produce a representation of it as a flattened list.
-        /// </summary>
         private JObject GetGroupItems(UiElementContainerSpec container, UiElementContainerSpec containerToProcess = null)
         {
             JObject item = new JObject();
