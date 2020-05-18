@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D02A271-427D-420E-87AC-FAA88EF94989}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iLogicFormExtractorPlugin</RootNamespace>
+    <AssemblyName>iLogicFormExtractorPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PackagePath>..\..\packages</PackagePath>
+    <PackagePath Condition="Exists('..\packages')">..\packages</PackagePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autodesk.iLogic.Common">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.Core">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.Exec">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.Exec.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.Runtime">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.Types">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.UiBuilder">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.UiBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.iLogic.UiBuilderCore">
+      <HintPath>C:\Program Files\Autodesk\Inventor 2020\Bin\Autodesk.iLogic.UiBuilderCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Autodesk.Inventor.Interop, Version=24.1.0.0, Culture=neutral, PublicKeyToken=d84147f8b4276564, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Users\Adam Nagy\source\repos\SampleAddIn\SampleAddIn\Autodesk.Inventor.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Log" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="iLogicUtility - Copy.cs" />
+    <Compile Include="iLogicUtility.cs" />
+    <Compile Include="PluginServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleAutomation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="iLogicFormExtractorPlugin.X.manifest" />
+    <Content Include="PackageContents.xml" />
+    <Content Include="iLogicFormExtractorPlugin.Inventor.addin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Autodesk.Forge.DesignAutomation.Inventor.Utils">
+      <Version>1.0.0-beta3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <PluginBundle Include="$(TargetDir)*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="$(ProjectDir)PackageContents.xml" DestinationFolder="$(TargetDir)..\Bundle\$(MSBuildProjectName).bundle" />
+    <Copy SourceFiles="@(PluginBundle)" DestinationFolder="$(TargetDir)..\Bundle\$(MSBuildProjectName).bundle\Contents\" />
+    <MakeDir Directories="$(SolutionDir)Output" />
+    <ZipDirectory SourceDirectory="$(TargetDir)..\Bundle" DestinationFile="$(SolutionDir)Output\$(MSBuildProjectName).bundle.zip" Overwrite="true" />
+  </Target>
+</Project>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Addin Type="Plugin">
+  <ClassId>{67bf4343-a315-4bae-855e-f5fde7d653b4}</ClassId>
+  <ClientId>{67bf4343-a315-4bae-855e-f5fde7d653b4}</ClientId>
+  <DisplayName>iLogicFormExtractorPlugin</DisplayName>
+  <Description>a iLogicFormExtractorPlugin</Description>
+  <Assembly>iLogicFormExtractorPlugin.dll</Assembly>
+</Addin>

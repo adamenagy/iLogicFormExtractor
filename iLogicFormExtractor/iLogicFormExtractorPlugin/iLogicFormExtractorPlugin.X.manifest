@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity name="iLogicFormExtractorPlugin" version="1.0.0.0"></assemblyIdentity>
+  <clrClass clsid="{67bf4343-a315-4bae-855e-f5fde7d653b4}" progid="iLogicFormExtractorPlugin.PluginServer" threadingModel="Both" name="iLogicFormExtractorPlugin.PluginServer"></clrClass>
+  <file name="iLogicFormExtractorPlugin.dll" hashalg="SHA1"></file>
+</assembly>
