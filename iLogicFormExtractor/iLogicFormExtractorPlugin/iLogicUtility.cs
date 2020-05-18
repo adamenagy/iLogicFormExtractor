@@ -20,8 +20,6 @@ namespace iLogicFormExtractorPlugin
     /// </summary>
     public class iLogicFormsReader
     {
-        //private readonly PictureManager _pictureManager;
-
         readonly UiStorage storage;
         readonly dynamic document;
         readonly string folderPath;

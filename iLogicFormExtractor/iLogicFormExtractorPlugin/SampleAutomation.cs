@@ -39,6 +39,8 @@ namespace iLogicFormExtractorPlugin
         public void Run(Document doc)
         {
             LogTrace("Run called with {0}", doc.DisplayName);
+
+            RunWithArguments(doc, null);
         }
 
         public void RunWithArguments(Document doc, NameValueMap map)
@@ -49,12 +51,12 @@ namespace iLogicFormExtractorPlugin
             {
                 using (new HeartBeat())
                 {
-                    var reader = new iLogicFormsReader(doc, "c:\\Temp\\pics");
-                    //var jsonForms = new JObject();
-                    //object[] names = reader.GetSortedListOfFormNames(jsonForms);
+                    string currentDir = System.IO.Directory.GetCurrentDirectory();
+                    string resultDir = System.IO.Path.Combine(currentDir, "result");
+                    var reader = new iLogicFormsReader(doc, resultDir);
                     string json = reader.ToJsonString();
-
-                    System.IO.File.WriteAllText("result.json", json);
+                    string jsonPath = System.IO.Path.Combine(resultDir, "result.json");
+                    System.IO.File.WriteAllText(jsonPath, json);
                 }
             }
             catch (Exception e)

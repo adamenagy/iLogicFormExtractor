@@ -44,7 +44,7 @@ namespace DebugPluginLocally
         private static void DebugSamplePlugin(InventorServer app)
         {
             // get project directory
-            string projectdir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string projectdir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
 
             // get box.ipt absolute path
             string boxPath = System.IO.Path.Combine(projectdir, @"inputFiles\", "boxWithiLogicForms.ipt");
