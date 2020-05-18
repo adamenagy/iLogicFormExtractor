@@ -242,8 +242,6 @@ namespace iLogicFormExtractorPlugin
         private JObject GetParameter(UiElementContainerSpec container, ParameterControlSpec pcs)
         {
             var item = new JObject();
-            item.Add("displayName", pcs.DisplayName);
-            item.Add("type", pcs.GetType().Name);
             item.Add("alwaysReadOnly", pcs.AlwaysReadOnly);
             item.Add("readOnly", pcs.ReadOnly);
             item.Add("enablingParameterName", pcs.EnablingParameterName);
