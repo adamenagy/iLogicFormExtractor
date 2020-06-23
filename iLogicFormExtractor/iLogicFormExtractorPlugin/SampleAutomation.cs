@@ -53,6 +53,7 @@ namespace iLogicFormExtractorPlugin
                 {
                     string currentDir = System.IO.Directory.GetCurrentDirectory();
                     string resultDir = System.IO.Path.Combine(currentDir, "result");
+                    System.IO.Directory.CreateDirectory(resultDir);
                     var reader = new iLogicFormsReader(doc, resultDir);
                     string json = reader.ToJsonString();
                     string jsonPath = System.IO.Path.Combine(resultDir, "result.json");
