@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interaction", "iLogicFormExtractor\Interaction\Interaction.csproj", "{F0600B39-6E12-4078-9C4E-CE83CCEB32FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugPluginLocally", "iLogicFormExtractor\DebugPluginLocally\DebugPluginLocally.csproj", "{6718211C-F87D-44AD-BA41-6CD9689E96DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3D02A271-427D-420E-87AC-FAA88EF94989} = {3D02A271-427D-420E-87AC-FAA88EF94989}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iLogicFormExtractorPlugin", "iLogicFormExtractor\iLogicFormExtractorPlugin\iLogicFormExtractorPlugin.csproj", "{3D02A271-427D-420E-87AC-FAA88EF94989}"
 EndProject

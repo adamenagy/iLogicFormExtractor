@@ -81,16 +81,14 @@
     <None Include="inputFiles\boxWithiLogicForms.ipt" />
     <None Include="inputFiles\params.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iLogicFormExtractorPlugin\iLogicFormExtractorPlugin.csproj">
+      <Project>{3d02a271-427d-420e-87ac-faa88ef94989}</Project>
+      <Name>iLogicFormExtractorPlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
-    <When Condition="$(MultipleProjects) == 'true'">
-      <ItemGroup>
-        <ProjectReference Include="..\iLogicFormExtractorPlugin\iLogicFormExtractorPlugin.csproj">
-          <Project>{f1c9d7e2-53a8-4e4e-af9e-931ca891715d}</Project>
-          <Name>iLogicFormExtractorPlugin</Name>
-        </ProjectReference>
-        <!-- other ProjectReference elements -->
-      </ItemGroup>
-    </When>
+    <When Condition="$(MultipleProjects) == 'true'" />
     <Otherwise>
       <ItemGroup>
         <!-- other ProjectReference elements -->
